@@ -74,6 +74,10 @@ namespace Laboratorio7
             dato.Add(er);
             //GuardarCasas("Casas.txt");
             //GuardarPerosnas("Personas.txt");
+            mostrar();
+        }
+        private void mostrar()
+        {
             GuardarDatos("Datos.txt");
             dataGridView1.DataSource = null;
             dataGridView1.Refresh();
@@ -82,7 +86,26 @@ namespace Laboratorio7
 
         private void button2_Click(object sender, EventArgs e)
         {
-//boton de ordenar 
+            dato = dato.OrderByDescending(p => p.Cuota).ToList();
+            mostrar();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //boton de ordenar
+            Datos mayor = dato.OrderByDescending(al => al.Cuota).First();
+            int p = 0;
+            if (p==-0)
+            {
+                //dato = dato.OrderByDescending(p => p.Cuota).ToList();
+                textBox7.Text = dato[p].Nombre.ToString() + " -- " + dato[p].Apellido.ToString() + " -- " + dato[p].No_casa.ToString() + " -- " + dato[p].Cuota.ToString();
+                mostrar();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
