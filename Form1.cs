@@ -72,13 +72,23 @@ namespace Laboratorio7
             er.No_casa = Convert.ToInt32(textBox6.Text);
             er.Cuota = Convert.ToInt32(textBox4.Text);
             dato.Add(er);
-            //GuardarCasas("Casas.txt");
-            //GuardarPerosnas("Personas.txt");
+            GuardarDatos("Datos.txt");
+            Propiedades a = new Propiedades();
+            a.No_casa = Convert.ToInt32(textBox6.Text);
+            a.DpiPropietario = textBox5.Text;
+            a.Cuota = Convert.ToInt32(textBox4.Text);
+            casas.Add(a);
+            GuardarCasas("Casas.txt");
+            Propietarios ee = new Propietarios();
+            ee.DPI = textBox1.Text;
+            ee.Nombre = textBox2.Text;
+            ee.Apellido = textBox3.Text;
+            personas.Add(ee);
+            GuardarPerosnas("Personas.txt");
             mostrar();
         }
         private void mostrar()
         {
-            GuardarDatos("Datos.txt");
             dataGridView1.DataSource = null;
             dataGridView1.Refresh();
             dataGridView1.DataSource = dato;
@@ -98,14 +108,16 @@ namespace Laboratorio7
             if (p==-0)
             {
                 //dato = dato.OrderByDescending(p => p.Cuota).ToList();
-                textBox7.Text = dato[p].Nombre.ToString() + " -- " + dato[p].Apellido.ToString() + " -- " + dato[p].No_casa.ToString() + " -- " + dato[p].Cuota.ToString();
+                label11.Text = dato[p].Nombre.ToString() + " -- " + dato[p].Apellido.ToString() + " -- " + dato[p].No_casa.ToString() + " -- " + dato[p].Cuota.ToString();
                 mostrar();
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            label10.Text ="Cuotas Altas\n"+dato[0].Cuota.ToString()+"\n"+ dato[1].Cuota.ToString() + "\n"+ dato[2].Cuota.ToString() + "\n";
+            int ultimos = dato.Count();
+            label9.Text = "Cuotas Bajas\n"+dato[ultimos - 1].Cuota.ToString()+"\n"+ dato[ultimos - 2].Cuota.ToString()+"\n"+ dato[ultimos - 3].Cuota.ToString();
         }
     }
 }
